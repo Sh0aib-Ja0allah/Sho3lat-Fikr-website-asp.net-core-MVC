@@ -1,0 +1,51 @@
+﻿    @model IEnumerable<Member>;
+
+        @{
+    ViewData["Title"] = "List of Members";
+          }
+
+<div class="row"> 
+    <div class="col-md-8 offset-md-2">
+        <table class="table border"> 
+
+            <h1 class="text-center"> Sho3lat Fikr Members Page.</h1>
+           
+            <div>
+              
+                <a class="nav-link btn btn btn-outline-success bi bi-pencil-squara " asp-controller="Members" asp-action="AddMember"><strong>AddMember</strong></a>
+
+            </div>
+            <br />
+
+           <thead class="border-top">
+                <tr class="text-center bg-success text-white">
+
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.ProFilePictureURL)</th>
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.FullName)</th>
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.Bio)</th>
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.Email)</th>
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                   <th class="align-middle">@Html.DisplayNameFor(model => model.Education)</th>
+                   <th class="align-middle">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="border-top">
+                    @foreach (var item in Model)
+                    {
+                      <tr>
+                            <td class="align-middle"><img class="rounded-circle" src="@item.ProFilePictureURL" alt="@item.FullName" style="max-width:150px" /></td>
+                            <td class="align-middle"><div>@item.FullName</div></td>
+                            <td class="align-middle">@item.Bio</td>
+                            <td class="align-middle">@item.Email</td>
+                            <td class="align-middle">@item.PhoneNumber</td>
+                            <td class="align-middle">@item.Education</td>
+                             <td class="align-middle">
+                              <a class="btn btn-outline-primary" name="EditKey" asp-action="Edit" asp-controller="Member" asp-route-id="@item.MemberID">Edit</a>
+                              <a class="btn btn-danger text-white" name="DeleteKey" asp-action="Delete" asp-controller="Member" asp-route-id="@item.MemberID">Delete</a>
+                            </td>
+                      </tr>
+                    }      
+            </tbody>
+        </table>
+    </div>    
+</div>
