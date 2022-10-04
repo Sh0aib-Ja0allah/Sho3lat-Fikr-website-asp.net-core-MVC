@@ -1,0 +1,60 @@
+﻿   @* @model IEnumerable<Book>;*@
+
+    @model List<Book>
+
+        @{
+    ViewData["Title"] = "Book Wanted.";
+          }
+
+<div class="row"> 
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                   @item.Name
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.BookID"></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="200px" hight="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text"><b>Description: </b>@item.Description</p>
+                            <p class="card-text"><b>Category: </b>@item.BOOKCategory</p>
+                            <p class="card-text"><b>Publish Date: </b>@item.PublishDate.ToString("yyyy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.BookID">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                                <a class="btn btn-success text-white @((DateTime.Now > item.PublishDate) ? "disabled" : "")">
+                                <a class="btn btn-outline-primary bi bi-pencil-squara" href="@item.Price">Download</a>
+
+                            </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+         <div>
+             <a asp-action="Index" asp-controller="Book" class="btn btn-outline-primary"> Back To List</a>
+         </div>
+</div>
